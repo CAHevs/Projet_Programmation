@@ -1,14 +1,6 @@
-import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
-import java.io.File;
 import java.io.IOException;
-import java.util.Date;
-import java.awt.event.*;
-import java.text.*;
-import java.awt.image.*;
-import java.time.chrono.ChronoZonedDateTime;
-import java.util.Timer;
 
 public class MainFrame extends JFrame {
 
@@ -30,10 +22,9 @@ public class MainFrame extends JFrame {
 
     public MainFrame() throws IOException {
 
-        setDefaultCloseOperation(EXIT_ON_CLOSE);
+        setDefaultCloseOperation(DISPOSE_ON_CLOSE);
 
         setSize(300, 500);
-
 
         panelTop.setLayout(new GridLayout(1, 3));
 
@@ -53,6 +44,7 @@ public class MainFrame extends JFrame {
         game.setContentAreaFilled(false);
         game.setFocusPainted(false);
         game.setOpaque(false);
+
 
         apps.add(contacts);
         apps.add(gallery);
@@ -74,6 +66,8 @@ public class MainFrame extends JFrame {
         add(panelTop, BorderLayout.NORTH);
         add(apps);
         add(buttons, BorderLayout.SOUTH);
+
+
 
     }
 }

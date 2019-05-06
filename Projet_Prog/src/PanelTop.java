@@ -43,7 +43,7 @@ public class PanelTop extends JPanel {
 
         DisplayBatteryLevel();
 
-        this.setBackground(Color.black);
+        this.setBackground(Color.BLACK);
         percentDisplay.setForeground(Color.white);
         fiveG.setForeground(Color.white);
         time.setForeground(Color.white);
@@ -74,10 +74,10 @@ public class PanelTop extends JPanel {
         String currentTime = "";
         Calendar time = Calendar.getInstance();
         if (time.get(Calendar.MINUTE) < 10){
-            currentTime = time.get(Calendar.HOUR) + "h0" + time.get(Calendar.MINUTE);
+            currentTime = time.get(Calendar.HOUR_OF_DAY) + "h0" + time.get(Calendar.MINUTE);
         }
         else{
-            currentTime = time.get(Calendar.HOUR) + "h0" + time.get(Calendar.MINUTE);
+            currentTime = time.get(Calendar.HOUR_OF_DAY) + "h" + time.get(Calendar.MINUTE);
         }
         return currentTime;
     }
@@ -101,20 +101,20 @@ public class PanelTop extends JPanel {
         valuePercent = Integer.parseInt(percentBatteryWithoutSymbol);
 
         if (statusBattery.equals("Online")){
-            img = ImageIO.read(new File("battery_load.png"));
+            img = ImageIO.read(new File("battery_pics/battery_load.png"));
         }
         else{
             if (valuePercent <= 100 && valuePercent > 75){
-                img = ImageIO.read(new File("battery_full.png"));
+                img = ImageIO.read(new File("battery_pics/battery_full.png"));
             }
             else if (valuePercent <= 75 && valuePercent > 50){
-                img = ImageIO.read(new File("battery_3_4.png"));
+                img = ImageIO.read(new File("battery_pics/battery_3_4.png"));
             }
             else if (valuePercent <= 50 && valuePercent > 25){
-                img = ImageIO.read(new File("battery_low.png"));
+                img = ImageIO.read(new File("battery_pics/battery_low.png"));
             }
             else if (valuePercent <= 25 && valuePercent > 0){
-                img = ImageIO.read(new File("battery_alert.png"));
+                img = ImageIO.read(new File("battery_pics/battery_alert.png"));
             }
         }
 

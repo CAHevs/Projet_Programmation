@@ -9,22 +9,28 @@ public class ContactFrame extends JFrame {
     private PanelTop panelTop = new PanelTop();
     private JPanel contacts;
     private File folder = new File("contact");
+    private File[] listofContactsFile;
+    private JButton[] listContacts;
+    private JButton addC = new JButton("Add");
 
     public ContactFrame() throws IOException {
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         setSize(300,500);
 
+        addContact addContact = new addContact();
+
+        addC.addActionListener(addContact);
+
         contacts = contactList(folder);
 
         add(contacts, BorderLayout.CENTER);
         add(panelTop, BorderLayout.NORTH);
+        add(addC, BorderLayout.SOUTH);
     }
 
     private JPanel contactList(File folder){
 
         JPanel contacts = new JPanel();
-        File[] listofContactsFile;
-        JButton[] listContacts;
         JPanel[] contactWithName;
 
         listofContactsFile = getAllFileText(folder);
@@ -41,7 +47,7 @@ public class ContactFrame extends JFrame {
             listContacts[i].setText(getNameFirstName(getContactName(listofContactsFile[i])));
             listContacts[i].setVerticalTextPosition(AbstractButton.CENTER);
             listContacts[i].setHorizontalTextPosition(AbstractButton.RIGHT);
-            listContacts[i].addActionListener(new showContact(getContactName(listofContactsFile[i])));
+            listContacts[i].addActionListener(new showContact(getContactName(listofContactsFile[i]), listofContactsFile[i]));
             listContacts[i].setBorderPainted(false);
             listContacts[i].setContentAreaFilled(false);
             listContacts[i].setFocusPainted(false);
@@ -135,14 +141,38 @@ public class ContactFrame extends JFrame {
     public class showContact implements ActionListener{
 
         String name;
+        File contactFile;
 
-        public showContact(String contact){
+        public showContact(String contact, File contactFile){
+
             name = getNameFirstName(contact);
+            this.contactFile = contactFile;
         }
 
         @Override
         public void actionPerformed(ActionEvent e) {
-            System.out.println("Vous avez cliquer sur le contact : " + name);
+            try {
+                ContactInfo contactInfo = new ContactInfo(contactFile);
+                contactInfo.setVisible(true);
+            } catch (IOException ex) {
+                ex.printStackTrace();
+            }
+        }
+    }
+
+    public class addContact implements ActionListener{
+
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            if (e.getSource() == addC){
+                ContactInfo contactInfo = null;
+                try {
+                    contactInfo = new ContactInfo();
+                } catch (IOException ex) {
+                    ex.printStackTrace();
+                }
+                contactInfo.setVisible(true);
+            }
         }
     }
 }

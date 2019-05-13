@@ -1,0 +1,4 @@
+Nom : Micheloud
+Prenom : Nelson
+Telephone : 1234567890
+Image : contact/default_icon.png

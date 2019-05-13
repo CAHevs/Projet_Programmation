@@ -37,7 +37,7 @@ public class PanelTop extends JPanel {
 
         Task_timer task_timer = new Task_timer();
 
-        timer_time = new Timer(1000, task_timer);
+        timer_time = new Timer(100, task_timer);
         timer_time.setRepeats(true);
         timer_time.start();
 

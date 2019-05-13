@@ -1,4 +1,4 @@
-Nom : Artero
-Prenom : Christopher
-N° Téléphone : 0123456789
-Image : christopher_artero.png
+Nom : Christopher
+Prenom : Artero
+Téléphone : 0123456789
+Image : contact/christopher_artero.png
